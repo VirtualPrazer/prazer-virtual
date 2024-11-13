@@ -13,11 +13,12 @@
         .bg-custom2 {
             background-color: rgba(255, 255, 255, 0.096);}
             
-        @media (max-width: 768px) { /* Aplica apenas para telas menores */
-            #card67315cf28ee2f .carousel-inner {
+        @media (max-width: 768px) {
+            /* Aplica apenas para telas menores */
+            div[id^="card"] .carousel-inner {
                 aspect-ratio: 9 / 16; /* Define a proporção de 3:4 */
             }
-            #card67315cf28ee2f img {
+            div[id^="card"] img {
                 height: 100%; /* Faz com que a imagem preencha toda a altura da div */
                 object-fit: cover; /* Garante que a imagem mantenha uma boa aparência */
             }

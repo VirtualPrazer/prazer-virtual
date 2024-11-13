@@ -128,7 +128,7 @@ $newCard .= <<<HTML
                 </div>
                 
                 <!-- Barra inferior com as informações das badges -->
-                <div class="position-absolute bottom-0 start-0 w-100 p-0 text-center" style="$colorbg;">
+                <div class="position-absolute bottom-0 start-0 w-100 p-0 text-center" style="background-color: $colorbg;">
                     <span class="badge bg-light text-dark" style="--bs-bg-opacity: .8;">Camgirl</span>
                     <span class="badge bg-light text-dark" style="--bs-bg-opacity: .8;">Sexo virtual</span>
                 </div>

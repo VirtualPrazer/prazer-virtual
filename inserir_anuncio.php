@@ -1,4 +1,4 @@
-<?php require('protect.php'); 
+<?php require('config.php'); 
 
 ?>
 

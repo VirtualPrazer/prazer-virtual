@@ -88,19 +88,19 @@ $indexFile = 'index.html';
 $indexContent = file_get_contents($indexFile);
 
 $newCard = <<<HTML
-    <!-- novo -->
-                <div class="$classPlano" id="$card_id">
-                    <div class="card position-relative">
-                        <!-- Carrossel com transição automática (intervalo de 3 segundos) -->
-                        <div id="$carousel_id" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
-                            <div class="carousel-inner">
-                                <a href="$perfil_page" class="text-decoration-none">
-                                    $carouselItems
-                                </a>
-                            </div>
-                            
-                            <!-- Indicadores do carrossel dinâmicos -->
-                            <ol class="carousel-indicators">
+    
+                    <div class="$classPlano" id="$card_id"><!-- novo -->
+                        <div class="card position-relative">
+                            <!-- Carrossel com transição automática (intervalo de 3 segundos) -->
+                            <div id="$carousel_id" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+                                <div class="carousel-inner">
+                                    <a href="$perfil_page" class="text-decoration-none">
+                                        $carouselItems
+                                    </a>
+                                </div>
+                                
+                                <!-- Indicadores do carrossel dinâmicos -->
+                                <ol class="carousel-indicators">
 HTML;
 
 // Adiciona os indicadores de forma dinâmica
@@ -110,31 +110,31 @@ foreach ($uploadedImages as $index => $imagePath) {
 }
 
 $newCard .= <<<HTML
-                </ol>
-                
-                <!-- Controles de navegação -->
-                <button class="carousel-control-prev" type="button" data-bs-target="#$carousel_id" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#$carousel_id" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-                
-                <!-- Barra superior com o nome do modelo -->
-                <div class="rounded-5 position-absolute top-0 start-0 w-100 p-2 text-center" style="background-color: $colorbg;">
-                    <h6 class="rounded bg-white text-dark" style="--bs-bg-opacity: .35; margin: -10px; padding: 0;" id="modeloNome">$nome</h6>
-                </div>
-                
-                <!-- Barra inferior com as informações das badges -->
-                <div class="position-absolute bottom-0 start-0 w-100 p-0 text-center" style="background-color: $colorbg;">
-                    <span class="badge bg-light text-dark" style="--bs-bg-opacity: .8;">Camgirl</span>
-                    <span class="badge bg-light text-dark" style="--bs-bg-opacity: .8;">Sexo virtual</span>
-                </div>
-            </div>
-        </div>
-    </div>
+                                </ol>
+                    
+                                <!-- Controles de navegação -->
+                                <button class="carousel-control-prev" type="button" data-bs-target="#$carousel_id" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#$carousel_id" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                    
+                                <!-- Barra superior com o nome do modelo -->
+                                <div class="rounded-5 position-absolute top-0 start-0 w-100 p-2 text-center" style="background-color: $colorbg;">
+                                    <h6 class="rounded bg-white text-dark" style="--bs-bg-opacity: .35; margin: -10px; padding: 0;" id="modeloNome">$nome</h6>
+                                </div>
+                                
+                                <!-- Barra inferior com as informações das badges -->
+                                <div class="position-absolute bottom-0 start-0 w-100 p-0 text-center" style="background-color: $colorbg;">
+                                    <span class="badge bg-light text-dark" style="--bs-bg-opacity: .8; font-size: 0.742rem;">Camgirl</span>
+                                    <span class="badge bg-light text-dark" style="--bs-bg-opacity: .8; font-size: 0.742rem;">Sexo virtual</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 HTML;
 
 // Localiza o ponto de inserção na seção específica
@@ -284,24 +284,25 @@ $data_expiracao_formatada = $data_expiracao->format('d/m/Y');
 
 $painel_id = "painel" . uniqid();
 $novoAnuncioPainel = <<<HTML
-<!-- novo -->
-<div class="d-flex align-items-center p-3 border-bottom" id="$painel_id">
-    <div class="flex-shrink-0 me-3">
-        <img src="$mainImage" alt="$nome" width="40" height="40" class="rounded-circle">
-    </div>
-    <div class="flex-grow-1">
-        <h6 class="mb-0">$nome</h6>
-        <small class="text-muted">Criado em: {$data_criacao->format('d/m/Y')} | Plano: $secao </small><br>
-        <small class="text-muted">Expira em: $data_expiracao_formatada</small><br>
-        <small>ID do Card: $card_id</small><br>
-        <small>ID da Página de Perfil: $perfil_page</small><br>
-        </div>
-        <form action="delete.php" method="post" style="display:inline;">
-            <input type="hidden" name="card_id" value="{$card_id}">
-            <input type="hidden" name="perfil_page"  value="{$perfil_page}">
-            <button type="submit" class="btn btn-sm btn-outline-danger">Excluir</button>
-        </form>
-</div>
+
+                <div class="d-flex align-items-center p-3 border-bottom" id="$painel_id"><!-- novo -->
+                    <div class="flex-shrink-0 me-3">
+                        <img src="$mainImage" alt="$nome" width="40" height="40" class="rounded-circle">
+                    </div>
+                    <div class="flex-grow-1">
+                        <h5 class="mb-0">$nome</h5>
+                        <small class="text-light">Criado em: {$data_criacao->format('d/m/Y')} | Plano: $secao </small><br>
+                        <small class="text-light">Expira em: $data_expiracao_formatada</small><br>
+                        <small class="text-secondary">ID do Card: $card_id</small><br>
+                        <small class="text-secondary">ID da Página de Perfil: $perfil_page</small><br>
+                    </div>
+                    <form action="delete.php" method="post" style="display:inline;">
+                        <input type="hidden" name="card_id" value="{$card_id}">
+                        <input type="hidden" name="perfil_page"  value="{$perfil_page}">
+                        <input type="hidden" name="painel_id"  value="{$painel_id}">
+                        <button type="submit" class="btn btn-sm btn-outline-danger">Excluir</button>
+                    </form>
+                </div>
 HTML;
 
 // Insere o novo card no painel de anúncios

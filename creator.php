@@ -2,34 +2,54 @@
 require 'config.php'; 
 
 // Captura os dados enviados pelo formulário
-$nome = $_POST['nome'];
-$msg = $_POST['msg'];
-$cidade = $_POST['cidade'];
-$idade = $_POST['idade'];
+$nome = filter_var($_POST['nome'], FILTER_SANITIZE_STRING);
+$msg = nl2br($_POST['msg']); // Converte quebras de linha para <br>
+$cidade = filter_var($_POST['cidade'], FILTER_SANITIZE_STRING);
+$idade = filter_var($_POST['idade'], FILTER_VALIDATE_INT);
 $secao = $_POST['secao'];
-$telefone = $_POST['telefone'];
+$telefone = filter_var($_POST['telefone'], FILTER_SANITIZE_STRING);
 $data_criacao_post = $_POST['data_criacao'];
 $data_criacao = new DateTime($data_criacao_post);
 $duracao = $_POST['tempo'];
 
 // Verifica se foram enviadas imagens
-if (isset($_FILES['images'])) {
-    $uploadedImages = [];
+if (!isset($_FILES['images']['tmp_name']) || !is_array($_FILES['images']['tmp_name'])) {
+    die("Nenhum arquivo foi enviado ou formato inválido.");
+} //novo
 
-    // Cria uma pasta para salvar as imagens, se não existir
+if (isset($_FILES['images']['tmp_name']) && is_array($_FILES['images']['tmp_name'])) {
+    $uploadedImages = [];
     $targetDir = "uploads/";
-    if (!is_dir($targetDir)) {
-        mkdir($targetDir, 0755, true);
+
+    // check de permissões para evitar erros de escrita
+    if (!is_dir($targetDir) && !mkdir($targetDir, 0755, true) && !is_dir($targetDir)) {
+        die("Erro ao criar o diretório de uploads.");
     }
 
     // Processa cada imagem enviada
     foreach ($_FILES['images']['tmp_name'] as $key => $tmpName) {
-        $fileName = basename($_FILES['images']['name'][$key]);
+        $fileType = mime_content_type($tmpName); //novo
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/jfif']; //novo
+
+            
+        if (!in_array($fileType, $allowedTypes)) {
+            die("Tipo de arquivo não permitido. (Formatos válidos: JPEG, JPG, PNG, JFIF)") . htmlspecialchars($_FILES['images']['name'][$key]);
+        } //novo
+
+        if (count($_FILES['images']['tmp_name']) > 10) {
+            die("Você pode enviar no máximo 10 arquivos.");
+        } //novo
+        
+
+        $fileName = uniqid() . '.' . pathinfo($_FILES['images']['name'][$key], PATHINFO_EXTENSION); //novo
+        // $fileName = basename($_FILES['images']['name'][$key]);
         $targetFilePath = $targetDir . $fileName;
 
         // Move a imagem para a pasta de destino
         if (move_uploaded_file($tmpName, $targetFilePath)) {
             $uploadedImages[] = $targetFilePath; // Adiciona o caminho da imagem ao array
+        } else {
+            echo "Erro ao fazer upload de: " . htmlspecialchars($_FILES['images']['name'][$key]);
         }
     }
 
@@ -317,4 +337,6 @@ exit();
 } else {
     echo "Nenhuma imagem foi enviada.";
 }
+
+
 ?>

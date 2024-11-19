@@ -19,7 +19,6 @@ if (isset($_POST['user']) || isset($_POST['senha'])) {
         $stmt->bindParam(':senha', $_POST['senha']);
         
         $stmt->execute();
-        $quantidade = $stmt->rowCount();
 
         if ($quantidade == 1) {
             $usuario = $stmt->fetch(PDO::FETCH_ASSOC);

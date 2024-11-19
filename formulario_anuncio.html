@@ -109,6 +109,7 @@
               <textarea name="msg" id="msg" class="form-control bg-dark-subtle" placeholder="Insira aqui" cols="30" rows="5" required></textarea>
           </div><br>
           <p class="lead"> Nossos atendentes solicitarão as suas fotos.</p>
+          <p class="text-white-50">  Dica: certifique-se de que estarão centralizadas para melhor visualização. </p>
           <hr class="my-4">
           <button class="w-100 btn btn-warning btn-lg" type="submit" onclick="abrirWhatsapp()">Enviar pedido</button>
         </form>
@@ -146,7 +147,7 @@
     const msg = document.getElementById('msg').value;
 
     // Assuming you want to send this info to WhatsApp
-    const mensagem = `Olá, meu nome é *${nome}*, tenho *${idade}* anos, *${altura}* de altura, moro em *${cidade}* e o meu telefone é *${telefone}*. Escolhi o plano *${plano}* por *${tempo}*. Envie-me por favor o pix para pagamento \n Descrição: _${msg}_`;
+    const mensagem = `Olá, meu nome é *${nome}*, tenho *${idade}* anos, *${altura}* de altura, quero anunciar em *${cidade}* e o meu telefone é *${telefone}*. Escolhi o plano *${plano}* por *${tempo}*. Envie-me por favor o pix para pagamento \n Descrição: _${msg}_`;
     const url = `https://api.whatsapp.com/send?phone=557183462062&text=${encodeURIComponent(mensagem)}`;
     window.open(url, '_blank');
 }

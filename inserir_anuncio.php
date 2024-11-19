@@ -35,17 +35,13 @@
                     <li><a href="planos.html" class="nav-link px-2 text-light">Planos</a></li>
                     <li><a href="duvidas.html" class="nav-link px-2 text-light">Dúvidas</a></li>
                     <li><a href="sobre.html" class="nav-link px-2 text-light">Sobre</a></li>
-                    <a href="painel_anuncios.php" class="btn btn-secondary">Painel de Anúncios</a>
                 </ul>
-                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                    <input type="search" class="form-control form-control-dark text-bg-light" placeholder="Pesquise por característica" aria-label="Search">
-                </form>
                 <div class="text-end">
-                
-                <form action="logout.php" method="POST">
-                  <button type="submit" class="btn btn-danger">Sair</button>
-                </form>
-                    <a href="planos.html" class="btn btn-warning">Quero Anunciar</a>
+                  <a href="painel_anuncios.php" class="btn btn-secondary">Painel de Anúncios</a>
+                  <a href="planos.html" class="btn btn-warning d-inline-block">Quero Anunciar</a>
+                  <form action="logout.php" method="POST" class="d-inline-block">
+                    <button type="submit" class="btn btn-danger">Sair</button>
+                  </form>
                 </div>
                 
             </div> 

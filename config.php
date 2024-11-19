@@ -24,6 +24,4 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $sql = $pdo->query("SELECT * FROM `login`");
 $sql->execute();
 
-echo $sql->rowCount();
-
 ?>
